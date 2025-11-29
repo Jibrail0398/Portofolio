@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeContactForm();
     initializeAnimations();
     addStarsEffect();
+    initializeThemeToggle();
 });
 
 // ========== SMOOTH SCROLL FUNCTION ========== 
@@ -392,6 +393,41 @@ function animateCounter(element, target, suffix) {
 
 // Initialize counter animation
 initializeCounterAnimation();
+
+// ========== THEME TOGGLE ========== 
+function initializeThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Set initial theme
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        document.body.classList.remove('light-mode');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+    
+    // Theme toggle event listener
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');
+        
+        const isLightMode = document.body.classList.contains('light-mode');
+        
+        // Update icon
+        if (isLightMode) {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', 'light');
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', 'dark');
+        }
+        
+        // Show notification
+        const message = isLightMode ? 'Light Mode Aktif' : 'Dark Mode Aktif';
+        showNotification(message, 'info');
+    });
+}
 
 // ========== DARK MODE TOGGLE (Optional Feature) ========== 
 function initializeDarkModeToggle() {
