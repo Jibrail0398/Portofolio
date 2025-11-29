@@ -908,6 +908,10 @@ section {
     .hero-animation {
         display: none;
     }
+
+    .logo h1 {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -921,7 +925,7 @@ section {
     }
 
     .logo h1 {
-        font-size: 1.3rem;
+        display: none;
     }
 
     .hero-text h1 {
